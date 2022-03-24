@@ -1919,7 +1919,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -1943,6 +1942,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -1985,7 +1986,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Main",
+  data: function data() {
+    return {
+      posts: []
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get("/api/posts").then(function (data_api) {
+      _this.posts = data_api.data;
+      console.log(_this.posts);
+    });
+  }
+});
 
 /***/ }),
 
@@ -3119,15 +3162,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    [
-      _c("h1", [_vm._v("caio")]),
-      _vm._v(" "),
-      _c("Header"),
-      _vm._v(" "),
-      _c("Main"),
-      _vm._v(" "),
-      _c("Footer"),
-    ],
+    [_c("Header"), _vm._v(" "), _c("Main"), _vm._v(" "), _c("Footer")],
     1
   )
 }
@@ -3153,7 +3188,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [_vm._v("\n    footer\n")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -3201,7 +3236,68 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _c(
+      "ul",
+      _vm._l(_vm.posts, function (post, index) {
+        return _c("li", { key: index }, [
+          _c("ul", [
+            _c("li", [
+              _vm._v(
+                "\n                    Titolo: " +
+                  _vm._s(post.title) +
+                  "\n                "
+              ),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _vm._v(
+                "\n                    Contenuto: " +
+                  _vm._s(post.content) +
+                  "\n                "
+              ),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _vm._v(
+                "\n                    Autore: " +
+                  _vm._s(post.author) +
+                  "\n                "
+              ),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _vm._v(
+                "\n                    Categoria: " +
+                  _vm._s(post.category ? post.category.name : "-") +
+                  "\n                "
+              ),
+            ]),
+            _vm._v(" "),
+            _c(
+              "li",
+              [
+                _vm._v("\n                    Tag: \n                    "),
+                _vm._l(post.tags, function (tag, index) {
+                  return _c("span", { key: index }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(tag.name ? tag.name : "-") +
+                        "\n                    "
+                    ),
+                  ])
+                }),
+              ],
+              2
+            ),
+          ]),
+          _vm._v(" "),
+          _c("br"),
+        ])
+      }),
+      0
+    ),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

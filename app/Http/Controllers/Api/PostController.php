@@ -11,7 +11,14 @@ use App\Post;
 class PostController extends Controller
 {
     public function index(){
-        $posts_api = Post::All();
+        $posts_api = Post::with('category', 'tags')->get();
+
+        /* foreach ($posts_api as $post) {
+            $post['tags'] = $post->tags;
+        } */
+        /* foreach ($posts_api as $post) {
+            $post['category'] = $post->categories;
+        } */
 
         return response()->json($posts_api);
     }

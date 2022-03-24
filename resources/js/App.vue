@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>caio</h1>
         <Header />
         <Main />
         <Footer />
